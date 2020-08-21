@@ -2,7 +2,7 @@
 using System.Collections;
 
 /// Переход по таймеру.
-public class TimerTransition : Transition
+public class TransitionByTimer : Transition
 {
     /// Время в секундах.  Задается в Inspector'е.
     [SerializeField, Tooltip("Time in seconds.")]

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class InitTransition : Transition
+public class TransitionToGameState : Transition
 {
     [SerializeField] private Transform spereTR;
     [SerializeField] private Transform cillTR;
@@ -11,7 +11,7 @@ public class InitTransition : Transition
     /// Событие "включения".
     void OnEnable()
     {
-        NeedTransit = CheckCondition() ? true : false;
+        NeedTransit = CheckCondition();
     }
 
     // Проверка условия смены состояния
