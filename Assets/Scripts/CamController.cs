@@ -2,18 +2,15 @@
 
 public class CamController : MonoBehaviour
 {
-    [SerializeField] private float smoothPosTime;
-    [SerializeField] private float smoothRotTime;
-    [SerializeField] private Vector3 cameraOffset;
-    [SerializeField] private Vector3 defeatCameraOffset;
+    [SerializeField] private ConfigSO config;
+
     private Vector3 velocity = Vector3.zero;
     private Vector3 cameraNextPos;
     private Quaternion cameraNextRot;
-    private Quaternion cameraDefaultRot;
 
     private void Start()
     {
-        cameraDefaultRot = Camera.main.transform.rotation;
+        config.camDefaultRot = Camera.main.transform.rotation;
     }
 
     public Vector3 CameraNextPos
@@ -30,18 +27,18 @@ public class CamController : MonoBehaviour
     public void StartFocusCamera(Transform target)
     {
         CalculateNewCameraPos(target);
-        cameraNextRot = cameraDefaultRot;
+        cameraNextRot = config.camDefaultRot;
     }
 
     public void DefeatCameraFocus(Transform target)
     {
-        cameraNextPos = target.position + defeatCameraOffset;
+        cameraNextPos = target.position + config.DefeatCameraOffset;
         CalculateNewCameraRot(target);
     }
 
     private void CalculateNewCameraPos(Transform target)
     {
-        cameraNextPos = target.position + cameraOffset;
+        cameraNextPos = target.position + config.CameraOffset;
     }
 
     private void CalculateNewCameraRot(Transform targetTR)
@@ -52,7 +49,7 @@ public class CamController : MonoBehaviour
 
     void LateUpdate()
     {
-        transform.position = Vector3.SmoothDamp(transform.position, cameraNextPos, ref velocity, smoothPosTime);        
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, cameraNextRot, smoothRotTime * Time.deltaTime);
+        transform.position = Vector3.SmoothDamp(transform.position, cameraNextPos, ref velocity, config.CamSmoothPosTime);        
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, cameraNextRot, config.CamSmoothRotTime * Time.deltaTime);
     }
 }

@@ -3,43 +3,41 @@ using UnityEngine;
 
 public class GameState : State
 {
+    [SerializeField] private ConfigSO config;
+
     [SerializeField] private CamController camC;
     [SerializeField] private GameObject startGO;
-    [SerializeField] private float scaleSpeed;
-    private Vector3 positionOffset = new Vector3(0F, 0.25F, 0F);
-    private Vector3 cylinderStartScale = new Vector3(0F, 0.25F, 0F);
-    private Vector3 cylinderMaxScale = new Vector3(1F, 0.25F, 1F);
-    private Vector3 scaleChange;
 
-    public List<GameObject> towerGOL;
+    private Vector3 scaleChange;
     private GameObject currentMeshGO;
     private GameObject prevMeshGO;
+
+    private List<GameObject> towerMeshes;
 
     private void OnEnable()
     {
         if (startGO != null)
         {
-            towerGOL = new List<GameObject>();
-            towerGOL.Add(startGO);
+            towerMeshes = new List<GameObject>();
+            towerMeshes.Add(startGO);
             currentMeshGO = startGO;
             camC?.StartFocusCamera(currentMeshGO.transform);
 
-            scaleChange = new Vector3(scaleSpeed, 0F, scaleSpeed);
+            scaleChange = new Vector3(config.ScaleSpeed, 0F, config.ScaleSpeed);
         }
     }
 
     public void ClearMeshList()
     {
-        for(int cnt = 1; cnt < towerGOL.Count; cnt++)
+        for(int cnt = 1; cnt < towerMeshes.Count; cnt++)
         {
-            Destroy(towerGOL[cnt]);
+            Destroy(towerMeshes[cnt]);
         }
-        //towerGOL.Clear();
     }
 
     public int GetMeshCount()
     {
-        return towerGOL.Count;
+        return towerMeshes.Count;
     }
 
     public GameObject CurrentMeshGO
@@ -77,10 +75,11 @@ public class GameState : State
     private void CreateMesh()
     {
         GameObject cylinder = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-        cylinder.transform.position = towerGOL[towerGOL.Count - 1].transform.position + positionOffset * 2;
-        cylinder.transform.localScale = cylinderStartScale;
-        cylinder.name = cylinder.name + "_" + towerGOL.Count;
-        towerGOL.Add(cylinder);
+        cylinder.transform.position = towerMeshes[towerMeshes.Count - 1].transform.position + config.MeshPosOffset * 2;
+        cylinder.transform.localScale = config.MeshStartScale;
+        cylinder.GetComponent<Renderer>().material.color = config.DefaultMeshColor;
+        cylinder.name = cylinder.name + "_" + towerMeshes.Count;
+        towerMeshes.Add(cylinder);
         prevMeshGO = currentMeshGO;
         currentMeshGO = cylinder;
 

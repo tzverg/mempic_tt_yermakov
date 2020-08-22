@@ -2,6 +2,8 @@
 
 public class GameOverState : State
 {
+    [SerializeField] private ConfigSO config;
+
     [SerializeField] private GameObject textLable;
     [SerializeField, Tooltip("Time for Destroy WrongMesh in sec.")]
     private float timeForDestroy;
@@ -14,7 +16,7 @@ public class GameOverState : State
 
         if (wrongMesh != null)
         {
-            wrongMesh.GetComponent<Renderer>().material.color = Color.red;
+            wrongMesh.GetComponent<Renderer>().material.color = config.WrongMeshColor;
             Destroy(wrongMesh, timeForDestroy);
         }
     }

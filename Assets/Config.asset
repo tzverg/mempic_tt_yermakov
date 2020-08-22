@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc5dc350155a97f44842612aa5f12355, type: 3}
+  m_Name: Config
+  m_EditorClassIdentifier: 
+  meshMinScale: {x: 0.1, y: 0.25, z: 0.1}
+  meshMaxScale: {x: 1, y: 0.25, z: 1}
+  meshStartScale: {x: 0, y: 0.25, z: 0}
+  meshPosOffset: {x: 0, y: 0.25, z: 0}
+  cameraOffset: {x: 0, y: 1, z: -5}
+  defeatCameraOffset: {x: 0, y: 5, z: -5}
+  scaleSpeed: 0.005
+  camSmoothPosTime: 1
+  camSmoothRotTime: 15
+  perfectMoveFaultValue: 0.05
+  defaultSphereColor: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 0}
+  defaultMeshColor: {r: 1, g: 1, b: 1, a: 0}
+  wrongMeshColor: {r: 1, g: 0, b: 0, a: 0}
+  camDefaultRot: {x: 0, y: 0, z: 0, w: 1}

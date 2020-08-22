@@ -152,6 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transitions:
   - {fileID: 66944854}
+  config: {fileID: 11400000, guid: bb9f6c8093c762343bc31e597ffc3baf, type: 2}
   spereTR: {fileID: 572451823}
   cillTR: {fileID: 1004042628}
 --- !u!114 &66944854
@@ -424,10 +425,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transitions:
   - {fileID: 342034547}
+  config: {fileID: 11400000, guid: bb9f6c8093c762343bc31e597ffc3baf, type: 2}
   camC: {fileID: 963194229}
   startGO: {fileID: 1004042624}
-  scaleSpeed: 0.005
-  towerGOL: []
 --- !u!1 &403050163
 GameObject:
   m_ObjectHideFlags: 0
@@ -474,6 +474,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transitions:
   - {fileID: 403050166}
+  config: {fileID: 11400000, guid: bb9f6c8093c762343bc31e597ffc3baf, type: 2}
   textLable: {fileID: 231711002}
   timeForDestroy: 5
   wrongMesh: {fileID: 0}
@@ -769,11 +770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a42afb3d1739b6c47b3b9bad54702ecf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1004042628}
-  smoothPosTime: 1
-  smoothRotTime: 10
-  cameraOffset: {x: 0, y: 1, z: -5}
-  defeatCameraOffset: {x: 0, y: 7, z: -5}
+  config: {fileID: 11400000, guid: bb9f6c8093c762343bc31e597ffc3baf, type: 2}
 --- !u!1 &1004042624
 GameObject:
   m_ObjectHideFlags: 0
