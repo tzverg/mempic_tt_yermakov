@@ -2,50 +2,57 @@
 
 public class CamController : MonoBehaviour
 {
-    //public static bool defeat = false;
-
-    [SerializeField] private Transform target;
-    [SerializeField] private float smoothTime;
+    [SerializeField] private float smoothPosTime;
+    [SerializeField] private float smoothRotTime;
     [SerializeField] private Vector3 cameraOffset;
+    [SerializeField] private Vector3 defeatCameraOffset;
     private Vector3 velocity = Vector3.zero;
     private Vector3 cameraNextPos;
+    private Quaternion cameraNextRot;
+    private Quaternion cameraDefaultRot;
+
+    private void Start()
+    {
+        cameraDefaultRot = Camera.main.transform.rotation;
+    }
 
     public Vector3 CameraNextPos
     {
         set { cameraNextPos = value; }
     }
 
-    public Transform Target
+    public void FocusCamera(Transform target)
     {
-        get { return target; }
-        set { target = value; CalculateNewCameraPos(target.position); }
+        CalculateNewCameraPos(target);
+        CalculateNewCameraRot(target);
     }
 
-    private void Start()
+    public void StartFocusCamera(Transform target)
     {
-        if (target != null)
-        {
-            CalculateNewCameraPos(target.position);
-        }
+        CalculateNewCameraPos(target);
+        cameraNextRot = cameraDefaultRot;
     }
 
-    public void CalculateNewCameraPos(Vector3 targetPos)
+    public void DefeatCameraFocus(Transform target)
     {
-        cameraNextPos = targetPos + cameraOffset;
+        cameraNextPos = target.position + defeatCameraOffset;
+        CalculateNewCameraRot(target);
     }
 
+    private void CalculateNewCameraPos(Transform target)
+    {
+        cameraNextPos = target.position + cameraOffset;
+    }
 
+    private void CalculateNewCameraRot(Transform targetTR)
+    {
+        Vector3 relativePos = (targetTR.position - transform.position);
+        cameraNextRot = Quaternion.LookRotation(relativePos);
+    }
 
     void LateUpdate()
     {
-        //if (defeat)
-        //{
-        //    cameraNextPos = new Vector3(0F, 1F, -5F);
-        //    transform.position = Vector3.SmoothDamp(transform.position, cameraNextPos, ref velocity, smoothTime);
-        //}
-        //else
-        //{
-            transform.position = Vector3.SmoothDamp(transform.position, cameraNextPos, ref velocity, smoothTime);
-        //}
+        transform.position = Vector3.SmoothDamp(transform.position, cameraNextPos, ref velocity, smoothPosTime);        
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, cameraNextRot, smoothRotTime * Time.deltaTime);
     }
 }

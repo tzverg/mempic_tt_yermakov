@@ -475,6 +475,7 @@ MonoBehaviour:
   transitions:
   - {fileID: 403050166}
   textLable: {fileID: 231711002}
+  timeForDestroy: 5
   wrongMesh: {fileID: 0}
 --- !u!114 &403050166
 MonoBehaviour:
@@ -750,7 +751,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: -10}
+  m_LocalPosition: {x: 0, y: 1, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -769,8 +770,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1004042628}
-  smoothTime: 1
+  smoothPosTime: 1
+  smoothRotTime: 10
   cameraOffset: {x: 0, y: 1, z: -5}
+  defeatCameraOffset: {x: 0, y: 7, z: -5}
 --- !u!1 &1004042624
 GameObject:
   m_ObjectHideFlags: 0

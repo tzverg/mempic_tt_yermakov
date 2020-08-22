@@ -22,7 +22,7 @@ public class GameState : State
             towerGOL = new List<GameObject>();
             towerGOL.Add(startGO);
             currentMeshGO = startGO;
-            prevMeshGO = null;
+            camC?.StartFocusCamera(currentMeshGO.transform);
 
             scaleChange = new Vector3(scaleSpeed, 0F, scaleSpeed);
         }
@@ -69,20 +69,27 @@ public class GameState : State
         }
     }
 
+    public void DefeatCameraFocus()
+    {
+        camC?.DefeatCameraFocus(startGO.transform);
+    }
+
     private void CreateMesh()
     {
         GameObject cylinder = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-        cylinder.transform.position = towerGOL[towerGOL.Count - 1].transform.position + positionOffset;
+        cylinder.transform.position = towerGOL[towerGOL.Count - 1].transform.position + positionOffset * 2;
         cylinder.transform.localScale = cylinderStartScale;
         cylinder.name = cylinder.name + "_" + towerGOL.Count;
         towerGOL.Add(cylinder);
         prevMeshGO = currentMeshGO;
         currentMeshGO = cylinder;
 
-        if(camC != null)
-        {
-            camC.Target = currentMeshGO.transform;
-        }
+        camC?.FocusCamera(currentMeshGO.transform);
+    }
+
+    public GameObject GetStartGO()
+    {
+        return startGO;
     }
 
     private void ScaleMesh()
