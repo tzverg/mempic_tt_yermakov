@@ -22,7 +22,9 @@ MonoBehaviour:
   camSmoothPosTime: 1
   camSmoothRotTime: 15
   perfectMoveFaultValue: 0.05
+  timeForDestroy: 2
   defaultSphereColor: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 0}
   defaultMeshColor: {r: 1, g: 1, b: 1, a: 0}
   wrongMeshColor: {r: 1, g: 0, b: 0, a: 0}
   camDefaultRot: {x: 0, y: 0, z: 0, w: 1}
+  towerPerfectMove: 01

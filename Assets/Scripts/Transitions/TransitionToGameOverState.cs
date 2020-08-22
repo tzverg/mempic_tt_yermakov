@@ -30,8 +30,8 @@ public class TransitionToGameOverState : Transition
 
         if (currentMeshLocalScale != null && prevMeshLocalScale != null)
         {
-            if (currentMeshLocalScale.x >= prevMeshLocalScale.x ||
-                currentMeshLocalScale.z >= prevMeshLocalScale.z)
+            if (currentMeshLocalScale.x > prevMeshLocalScale.x ||
+                currentMeshLocalScale.z > prevMeshLocalScale.z)
             {
                 gameOverState.wrongMesh = gameState.CurrentMeshGO;
                 gameState.DefeatCameraFocus();

@@ -1,12 +1,11 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class GameOverState : State
 {
     [SerializeField] private ConfigSO config;
 
     [SerializeField] private GameObject textLable;
-    [SerializeField, Tooltip("Time for Destroy WrongMesh in sec.")]
-    private float timeForDestroy;
     public GameObject wrongMesh;
     private Material wrongMeshMat;
 
@@ -17,12 +16,21 @@ public class GameOverState : State
         if (wrongMesh != null)
         {
             wrongMesh.GetComponent<Renderer>().material.color = config.WrongMeshColor;
-            Destroy(wrongMesh, timeForDestroy);
+            //Destroy(wrongMesh, timeForDestroy);
+            StartCoroutine("ReloadTheGame");
         }
+    }
+
+    IEnumerator ReloadTheGame()
+    {
+        yield return new WaitForSeconds(config.TimeForDestroy);
+        Destroy(wrongMesh);
     }
 
     void OnDisable()
     {
         textLable?.SetActive(false);
+        StopCoroutine("ReloadTheGame");
+        Destroy(wrongMesh);
     }
 }

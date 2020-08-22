@@ -1,4 +1,4 @@
-﻿//using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Config", menuName = "ConfigSO", order = 51)]
@@ -15,6 +15,8 @@ public sealed class ConfigSO : ScriptableObject
     [SerializeField] private float camSmoothPosTime;
     [SerializeField] private float camSmoothRotTime;
     [SerializeField] private float perfectMoveFaultValue;
+    [SerializeField, Tooltip("Time for Destroy WrongMesh in sec.")]
+    private float timeForDestroy;
 
     [SerializeField] private Color defaultSphereColor;
     [SerializeField] private Color defaultMeshColor;
@@ -33,10 +35,11 @@ public sealed class ConfigSO : ScriptableObject
     public float CamSmoothPosTime { get { return camSmoothPosTime; } }
     public float CamSmoothRotTime { get { return camSmoothRotTime; } }
     public float PerfectMoveFaultValue { get { return perfectMoveFaultValue; } }
+    public float TimeForDestroy { get { return timeForDestroy; } }
 
     public Color DefaultSphereColor { get { return defaultSphereColor; } }
     public Color DefaultMeshColor { get { return defaultMeshColor; } }
     public Color WrongMeshColor { get { return wrongMeshColor; } }
 
-    //public List<bool> towerPerfectMove;
+    public List<bool> towerPerfectMove;
 }
