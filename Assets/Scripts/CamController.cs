@@ -30,10 +30,10 @@ public class CamController : MonoBehaviour
         cameraNextRot = config.camDefaultRot;
     }
 
-    public void DefeatCameraFocus(Transform target)
+    public void DefeatCameraFocus(Transform targetPos, Transform targetLookAt)
     {
-        cameraNextPos = target.position + config.DefeatCameraOffset;
-        CalculateNewCameraRot(target);
+        cameraNextPos = targetPos.position + config.DefeatCameraOffset;
+        CalculateNewCameraRot(targetLookAt);
     }
 
     private void CalculateNewCameraPos(Transform target)
@@ -49,7 +49,7 @@ public class CamController : MonoBehaviour
 
     void LateUpdate()
     {
-        transform.position = Vector3.SmoothDamp(transform.position, cameraNextPos, ref velocity, config.CamSmoothPosTime);        
+        transform.position = Vector3.SmoothDamp(transform.position, cameraNextPos, ref velocity, config.CamSmoothPosTime);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, cameraNextRot, config.CamSmoothRotTime * Time.deltaTime);
     }
 }

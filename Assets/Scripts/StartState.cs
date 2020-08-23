@@ -12,7 +12,7 @@ public class StartState : State
         spereTR.GetComponent<Renderer>().material.color = config.DefaultSphereColor;
         cillTR.GetComponent<Renderer>().material.color = config.DefaultMeshColor;
 
-        spereTR.position = new Vector3(0, -3.175F, 0);
-        cillTR.position = new Vector3(0, 0, 0);
+        spereTR.position = config.SphereStartPos;
+        cillTR.position = Vector3.zero;
     }
 }

@@ -17,12 +17,19 @@ MonoBehaviour:
   meshStartScale: {x: 0, y: 0.25, z: 0}
   meshPosOffset: {x: 0, y: 0.25, z: 0}
   cameraOffset: {x: 0, y: 1, z: -5}
-  defeatCameraOffset: {x: 0, y: 5, z: -5}
+  defeatCameraOffset: {x: 0, y: 3, z: -5}
+  defeatCondMaxScale: {x: 1.1, y: 1, z: 1.1}
+  waveFirstStepInc: {x: 0.4, y: 0, z: 0.4}
+  waveFirstStepDec: {x: 0.2, y: 0, z: 0.2}
+  waveNextStepInc: {x: 0.3, y: 0, z: 0.3}
+  waveNextStepDecM: {x: 0.8, y: 0, z: 0.8}
   scaleSpeed: 0.005
-  camSmoothPosTime: 1
+  waveSmoothScaleTime: 0.15
+  camSmoothPosTime: 0.5
   camSmoothRotTime: 15
-  perfectMoveFaultValue: 0.05
-  timeForDestroy: 2
+  perfectMoveFaultValue: 0.01
+  waveTimer: 0.2
+  destroyTimer: 3
   defaultSphereColor: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 0}
   defaultMeshColor: {r: 1, g: 1, b: 1, a: 0}
   wrongMeshColor: {r: 1, g: 0, b: 0, a: 0}

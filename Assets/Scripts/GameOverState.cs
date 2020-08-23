@@ -17,20 +17,25 @@ public class GameOverState : State
         {
             wrongMesh.GetComponent<Renderer>().material.color = config.WrongMeshColor;
             //Destroy(wrongMesh, timeForDestroy);
-            StartCoroutine("ReloadTheGame");
+            // crunch (problem with destroying oblect after changing game state) p.s. Destroy delay useless
+            StartCoroutine("DestroyWithDelay");
         }
     }
 
-    IEnumerator ReloadTheGame()
+    IEnumerator DestroyWithDelay()
     {
-        yield return new WaitForSeconds(config.TimeForDestroy);
+        yield return new WaitForSeconds(config.DestroyTimer);
         Destroy(wrongMesh);
+    }
+
+    public void HideLable()
+    {
+        textLable.SetActive(false);
     }
 
     void OnDisable()
     {
-        textLable?.SetActive(false);
-        StopCoroutine("ReloadTheGame");
+        StopCoroutine("DestroyWithDelay");
         Destroy(wrongMesh);
     }
 }

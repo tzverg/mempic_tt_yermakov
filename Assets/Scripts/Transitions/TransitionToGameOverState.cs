@@ -2,10 +2,12 @@
 
 public class TransitionToGameOverState : Transition
 {
+    [SerializeField] private ConfigSO config;
+
     [SerializeField] private GameState gameState;
     [SerializeField] private GameOverState gameOverState;
-    private Vector3 currentMeshLocalScale;
-    private Vector3 prevMeshLocalScale;
+    private Vector3 currentMeshLS;
+    private Vector3 prevMeshLS;
 
     void OnEnable()
     {
@@ -16,25 +18,58 @@ public class TransitionToGameOverState : Transition
     {
         if (isActiveAndEnabled)
         {
-            if (gameState.GetMeshCount() > 2)
+            if (Input.GetMouseButton(0))
             {
-                NeedTransit = CheckCondition();
+                if (gameState.GetMeshCount() > 0)
+                {
+                    NeedTransit = CheckRealtimeCondition();
+                }
+            }
+            if (Input.GetMouseButtonUp(0))
+            {
+                if (gameState.GetMeshCount() > 0)
+                {
+                    NeedTransit = CheckCondition();
+                }
             }
         }
     }
 
     private bool CheckCondition()
     {
-        currentMeshLocalScale = gameState.GetCurrentMeshLocalScale();
-        prevMeshLocalScale = gameState.GetPrevMeshLocalScale();
+        currentMeshLS = gameState.GetCurrentMeshLocalScale();
+        prevMeshLS = gameState.GetPrevMeshLocalScale();
 
-        if (currentMeshLocalScale != null && prevMeshLocalScale != null)
+        if (currentMeshLS != null && prevMeshLS != null)
         {
-            if (currentMeshLocalScale.x > prevMeshLocalScale.x ||
-                currentMeshLocalScale.z > prevMeshLocalScale.z)
+            if (currentMeshLS.x > prevMeshLS.x || currentMeshLS.z > prevMeshLS.z)
             {
                 gameOverState.wrongMesh = gameState.CurrentMeshGO;
-                gameState.DefeatCameraFocus();
+                gameState.GameOver();
+                //Debug.LogError("CheckCondition GAME_OVER");
+                return true;
+            }
+            else
+            {
+                gameState.AnimateTower();
+            }
+        }
+        return false;
+    }
+
+    private bool CheckRealtimeCondition()
+    {
+        currentMeshLS = gameState.GetCurrentMeshLocalScale();
+        prevMeshLS = gameState.GetPrevMeshLocalScale();
+
+        if (currentMeshLS != null && prevMeshLS != null)
+        {
+            if (currentMeshLS.x > prevMeshLS.x * config.DefeatCondMaxScale.x ||
+                currentMeshLS.z > prevMeshLS.z * config.DefeatCondMaxScale.z)
+            {
+                gameOverState.wrongMesh = gameState.CurrentMeshGO;
+                gameState.GameOver();
+                //Debug.LogError("CheckRealtimeCondition GAME_OVER");
                 return true;
             }
             else
