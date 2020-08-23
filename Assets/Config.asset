@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc5dc350155a97f44842612aa5f12355, type: 3}
   m_Name: Config
   m_EditorClassIdentifier: 
+  sphereStartPos: {x: 0, y: -3.175, z: 0}
   meshMinScale: {x: 0.1, y: 0.25, z: 0.1}
   meshMaxScale: {x: 1, y: 0.25, z: 1}
   meshStartScale: {x: 0, y: 0.25, z: 0}
@@ -34,4 +35,4 @@ MonoBehaviour:
   defaultMeshColor: {r: 1, g: 1, b: 1, a: 0}
   wrongMeshColor: {r: 1, g: 0, b: 0, a: 0}
   camDefaultRot: {x: 0, y: 0, z: 0, w: 1}
-  towerPerfectMove: 01
+  towerPerfectMove: 
