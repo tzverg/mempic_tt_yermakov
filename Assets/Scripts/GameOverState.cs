@@ -25,7 +25,8 @@ public class GameOverState : State
     IEnumerator DestroyWithDelay()
     {
         yield return new WaitForSeconds(config.DestroyTimer);
-        Destroy(wrongMesh);
+        wrongMesh?.GetComponent<PoolObject>().ReturnToPool();
+        //Destroy(wrongMesh);
     }
 
     public void HideLable()
@@ -36,6 +37,7 @@ public class GameOverState : State
     void OnDisable()
     {
         StopCoroutine("DestroyWithDelay");
-        Destroy(wrongMesh);
+        wrongMesh?.GetComponent<PoolObject>().ReturnToPool();
+        //Destroy(wrongMesh);
     }
 }

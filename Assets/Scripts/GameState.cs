@@ -66,7 +66,8 @@ public class GameState : State
     {
         foreach (GameObject target in towerMeshes)
         {
-            Destroy(target);
+            //Destroy(target);
+            target.GetComponent<PoolObject>().ReturnToPool();
         }
     }
 
@@ -158,12 +159,14 @@ public class GameState : State
     private void CreateMesh()
     {
         //GameObject cylinder = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-        GameObject cylinder = Instantiate(meshPrefab);
+        //GameObject cylinder = Instantiate(meshPrefab);
         Vector3 meshPosOffset = config.MeshPosOffset * (towerMeshes.Count + 1) * 2;
-        cylinder.transform.position = startGO.transform.position + meshPosOffset;
-        cylinder.transform.localScale = config.MeshStartScale;
+        Vector3 newHexPos = startGO.transform.position + meshPosOffset;
+        GameObject cylinder = PoolManager.GetObject("MeshPrefab", newHexPos, config.MeshStartScale);
+        //cylinder.transform.position = startGO.transform.position + meshPosOffset;
+        //cylinder.transform.localScale = config.MeshStartScale;
         cylinder.GetComponent<Renderer>().material.color = config.DefaultMeshColor;
-        cylinder.name = cylinder.name + "_" + towerMeshes.Count;
+        //cylinder.name = cylinder.name + "_" + towerMeshes.Count;
         SetCurrentMesh(cylinder);
 
         camC?.FocusCamera(currentMeshGO.transform);

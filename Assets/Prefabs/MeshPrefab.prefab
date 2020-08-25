@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2412653821444801356}
   - component: {fileID: 2412653821444801359}
   - component: {fileID: 5156218583724320094}
+  - component: {fileID: 1175492936215218587}
   m_Layer: 0
   m_Name: MeshPrefab
   m_TagString: Untagged
@@ -106,7 +107,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: bb9f6c8093c762343bc31e597ffc3baf, type: 2}
+  waveVelocity: {x: 0, y: 0, z: 0}
   currentMesh: 0
   prepareToAnim: 0
   perfectMove: 0
   anim: 0
+--- !u!114 &1175492936215218587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2412653821444801358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb477dbbb7734744b42753d1deeb361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
